@@ -1,0 +1,1147 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+    >pem (v1.9.4)</a>
+</h1>
+<h4>Create private keys and certificates with node.js and io.js</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pem">module pem</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.config">
+            function <span class="apidocSignatureSpan">pem.</span>config
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.createCSR">
+            function <span class="apidocSignatureSpan">pem.</span>createCSR
+            <span class="apidocSignatureSpan">(options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.createCertificate">
+            function <span class="apidocSignatureSpan">pem.</span>createCertificate
+            <span class="apidocSignatureSpan">(options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.createDhparam">
+            function <span class="apidocSignatureSpan">pem.</span>createDhparam
+            <span class="apidocSignatureSpan">(keyBitsize, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.createPkcs12">
+            function <span class="apidocSignatureSpan">pem.</span>createPkcs12
+            <span class="apidocSignatureSpan">(key, certificate, password, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.createPrivateKey">
+            function <span class="apidocSignatureSpan">pem.</span>createPrivateKey
+            <span class="apidocSignatureSpan">(keyBitsize, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.getDhparamInfo">
+            function <span class="apidocSignatureSpan">pem.</span>getDhparamInfo
+            <span class="apidocSignatureSpan">(dh, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.getFingerprint">
+            function <span class="apidocSignatureSpan">pem.</span>getFingerprint
+            <span class="apidocSignatureSpan">(certificate, hash, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.getModulus">
+            function <span class="apidocSignatureSpan">pem.</span>getModulus
+            <span class="apidocSignatureSpan">(certificate, password, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.getPublicKey">
+            function <span class="apidocSignatureSpan">pem.</span>getPublicKey
+            <span class="apidocSignatureSpan">(certificate, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.readCertificateInfo">
+            function <span class="apidocSignatureSpan">pem.</span>readCertificateInfo
+            <span class="apidocSignatureSpan">(certificate, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.readPkcs12">
+            function <span class="apidocSignatureSpan">pem.</span>readPkcs12
+            <span class="apidocSignatureSpan">(bufferOrPath, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pem.verifySigningChain">
+            function <span class="apidocSignatureSpan">pem.</span>verifySigningChain
+            <span class="apidocSignatureSpan">(certificate, ca, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pem" id="apidoc.module.pem">module pem</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pem.config" id="apidoc.element.pem.config">
+        function <span class="apidocSignatureSpan">pem.</span>config
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function config(options) {
+    if (options.pathOpenSSL) {
+        pathOpenSSL = options.pathOpenSSL;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### Setting openssl location
+
+In some systems the `openssl` executable might not be available by the default name or it is not included in $PATH. In this case
+ you can define the location of the executable yourself as a one time action after you have loaded the pem module:
+
+```javascript
+var pem = require(&#x27;pem&#x27;);
+pem.<span class="apidocCodeKeywordSpan">config</span>({
+    pathOpenSSL: &#x27;/usr/local/bin/openssl&#x27;
+});
+...
+// do something with the pem module
+```
+
+### Specialthanks to
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.createCSR" id="apidoc.element.pem.createCSR">
+        function <span class="apidocSignatureSpan">pem.</span>createCSR
+        <span class="apidocSignatureSpan">(options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createCSR(options, callback) {
+    if (!callback &#x26;&#x26; typeof options === &#x27;function&#x27;) {
+        callback = options;
+        options = undefined;
+    }
+
+    options = options || {};
+
+    // http://stackoverflow.com/questions/14089872/why-does-node-js-accept-ip-addresses-in-certificates-only-for-san-not-for-cn
+    if (options.commonName &#x26;&#x26; (net.isIPv4(options.commonName) || net.isIPv6(options.commonName))) {
+        if (!options.altNames) {
+            options.altNames = [options.commonName];
+        } else if (options.altNames.indexOf(options.commonName) === -1) {
+            options.altNames = options.altNames.concat([options.commonName]);
+        }
+    }
+
+    if (!options.clientKey) {
+        createPrivateKey(options.keyBitsize || 2048, function(error, keyData) {
+            if (error) {
+                return callback(error);
+            }
+            options.clientKey = keyData.key;
+            createCSR(options, callback);
+        });
+        return;
+    }
+
+    var params = [&#x27;req&#x27;,
+        &#x27;-new&#x27;,
+        &#x27;-&#x27; + (options.hash || &#x27;sha256&#x27;)
+    ];
+
+    if (options.csrConfigFile) {
+        params.push(&#x27;-config&#x27;);
+        params.push(options.csrConfigFile);
+    }
+    else {
+        params.push(&#x27;-subj&#x27;);
+        params.push(generateCSRSubject(options));
+    }
+
+    params.push(&#x27;-key&#x27;);
+    params.push(&#x27;--TMPFILE--&#x27;);
+
+    var tmpfiles = [options.clientKey];
+    var config = null;
+
+    if (options.altNames &#x26;&#x26; Array.isArray(options.altNames) &#x26;&#x26; options.altNames.length) {
+        params.push(&#x27;-extensions&#x27;);
+        params.push(&#x27;v3_req&#x27;);
+        params.push(&#x27;-config&#x27;);
+        params.push(&#x27;--TMPFILE--&#x27;);
+        var altNamesRep = [];
+        for (var i = 0; i &#x3c; options.altNames.length; i++) {
+            altNamesRep.push((net.isIP(options.altNames[i]) ? &#x27;IP&#x27; : &#x27;DNS&#x27;) + &#x27;.&#x27; + (i + 1) + &#x27; = &#x27; + options.altNames[i]);
+        }
+
+        tmpfiles.push(config = [
+            &#x27;[req]&#x27;,
+            &#x27;req_extensions = v3_req&#x27;,
+            &#x27;distinguished_name = req_distinguished_name&#x27;,
+            &#x27;[v3_req]&#x27;,
+            &#x27;subjectAltName = @alt_names&#x27;,
+            &#x27;[alt_names]&#x27;,
+            altNamesRep.join(&#x27;\n&#x27;),
+            &#x27;[req_distinguished_name]&#x27;,
+            &#x27;commonName = Common Name&#x27;,
+            &#x27;commonName_max = 64&#x27;,
+        ].join(&#x27;\n&#x27;));
+    }
+
+    var passwordFilePath = null;
+    if (options.clientKeyPassword) {
+        passwordFilePath = pathlib.join(tempDir, crypto.randomBytes(20).toString(&#x27;hex&#x27;));
+        fs.writeFileSync(passwordFilePath, options.clientKeyPassword);
+        params.push(&#x27;-passin&#x27;);
+        params.push(&#x27;file:&#x27; + passwordFilePath);
+    }
+
+    execOpenSSL(params, &#x27;CERTIFICATE REQUEST&#x27;, tmpfiles, function(sslErr, data) {
+        function done(err) {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, {
+                csr: data,
+                config: config,
+                clientKey: options.clientKey
+            });
+        }
+        if (passwordFilePath) {
+            fs.unlink(passwordFilePath, function (fsErr) {
+                done(sslErr || fsErr);
+            });
+        }
+        else {
+            done(sslErr);
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  (ciphers:[&#x22;aes128&#x22;, &#x22;aes192&#x22;, &#x22;aes256&#x22;, &#x22;camellia128&#x22;, &#x22;camellia192&#x22;, &#x22;
+camellia256&#x22;, &#x22;des&#x22;, &#x22;des3&#x22;, &#x22;idea&#x22;])
+  * **callback** is a callback function with an error object and `{key}`
+
+### Create a Certificate Signing Request
+
+Use `createCSR` for creating certificate signing requests
+
+    pem.<span class="apidocCodeKeywordSpan">createCSR</span>(options, callback)
+
+Where
+
+  * **options** is an optional options object
+  * **callback** is a callback function with an error object and `{csr, clientKey}`
+
+Possible options are the following
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.createCertificate" id="apidoc.element.pem.createCertificate">
+        function <span class="apidocSignatureSpan">pem.</span>createCertificate
+        <span class="apidocSignatureSpan">(options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createCertificate(options, callback) {
+    if (!callback &#x26;&#x26; typeof options === &#x27;function&#x27;) {
+        callback = options;
+        options = undefined;
+    }
+
+    options = options || {};
+
+    if (!options.csr) {
+        createCSR(options, function(error, keyData) {
+            if (error) {
+                return callback(error);
+            }
+            options.csr = keyData.csr;
+            options.config = keyData.config;
+            options.clientKey = keyData.clientKey;
+            createCertificate(options, callback);
+        });
+        return;
+    }
+
+    if (!options.serviceKey) {
+
+        if (options.selfSigned) {
+            options.serviceKey = options.clientKey;
+        } else {
+            createPrivateKey(options.keyBitsize || 2048, function(error, keyData) {
+                if (error) {
+                    return callback(error);
+                }
+                options.serviceKey = keyData.key;
+                createCertificate(options, callback);
+            });
+            return;
+        }
+    }
+
+    var params = [&#x27;x509&#x27;,
+        &#x27;-req&#x27;,
+        &#x27;-&#x27; + (options.hash || &#x27;sha256&#x27;),
+        &#x27;-days&#x27;,
+        Number(options.days) || &#x27;365&#x27;,
+        &#x27;-in&#x27;,
+        &#x27;--TMPFILE--&#x27;
+    ];
+    var tmpfiles = [options.csr];
+
+    if (options.serviceCertificate) {
+
+        params.push(&#x27;-CA&#x27;);
+        params.push(&#x27;--TMPFILE--&#x27;);
+        params.push(&#x27;-CAkey&#x27;);
+        params.push(&#x27;--TMPFILE--&#x27;);
+        if (options.serial) {
+          params.push(&#x27;-set_serial&#x27;);
+          params.push(&#x27;0x&#x27; + (&#x27;00000000&#x27; + options.serial.toString(16)).slice(-8));
+        } else {
+          params.push(&#x27;-CAcreateserial&#x27;);
+        }
+        if(options.serviceKeyPassword){
+            params.push(&#x27;-passin&#x27;);
+            params.push(&#x27;pass:&#x27; + options.serviceKeyPassword);
+        }
+        tmpfiles.push(options.serviceCertificate);
+        tmpfiles.push(options.serviceKey);
+    } else {
+        params.push(&#x27;-signkey&#x27;);
+        params.push(&#x27;--TMPFILE--&#x27;);
+        if(options.serviceKeyPassword){
+            params.push(&#x27;-passin&#x27;);
+            params.push(&#x27;pass:&#x27; + options.serviceKeyPassword);
+        }
+        tmpfiles.push(options.serviceKey);
+    }
+
+    if (options.config) {
+        params.push(&#x27;-extensions&#x27;);
+        params.push(&#x27;v3_req&#x27;);
+        params.push(&#x27;-extfile&#x27;);
+        params.push(&#x27;--TMPFILE--&#x27;);
+        tmpfiles.push(options.config);
+    } else if (options.extFile) {
+      params.push(&#x27;-extfile&#x27;);
+      params.push(options.extFile);
+    }
+
+    if(options.clientKeyPassword){
+        params.push(&#x27;-passin&#x27;);
+        params.push(&#x27;pass:&#x27; + options.clientKeyPassword);
+    }
+
+    execOpenSSL(params, &#x27;CERTIFICATE&#x27;, tmpfiles, function(error, data) {
+        if (error) {
+            return callback(error);
+        }
+        var response = {
+            csr: options.csr,
+            clientKey: options.clientKey,
+            certificate: data,
+            serviceKey: options.serviceKey
+        };
+        return callback(null, response);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Here are some examples for creating an SSL key/cert on the fly, and running an HTTPS server on port 443.  443 is the standard HTTPS
+ port, but requires root permissions on most systems.  To get around this, you could use a higher port number, like 4300, and use
+ https://localhost:4300 to access your server.
+
+### Basic https
+```javascript
+var https = require(&#x27;https&#x27;),
+    pem = require(&#x27;pem&#x27;);
+
+pem.<span class="apidocCodeKeywordSpan">createCertificate</span>({days:1, selfSigned:true}, function(err, keys){
+    https.createServer({key: keys.serviceKey, cert: keys.certificate}, function(req, res){
+        res.end(&#x27;o hai!&#x27;)
+    }).listen(443);
+});
+```
+
+###  Express
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.createDhparam" id="apidoc.element.pem.createDhparam">
+        function <span class="apidocSignatureSpan">pem.</span>createDhparam
+        <span class="apidocSignatureSpan">(keyBitsize, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createDhparam(keyBitsize, callback) {
+    if (!callback &#x26;&#x26; typeof keyBitsize === &#x27;function&#x27;) {
+        callback = keyBitsize;
+        keyBitsize = undefined;
+    }
+
+    keyBitsize = Number(keyBitsize) || 512;
+
+    var params = [&#x27;dhparam&#x27;,
+        &#x27;-outform&#x27;,
+        &#x27;PEM&#x27;,
+        keyBitsize
+    ];
+
+    execOpenSSL(params, &#x27;DH PARAMETERS&#x27;, function(error, dhparam) {
+        if (error) {
+            return callback(error);
+        }
+        return callback(null, {
+            dhparam: dhparam
+        });
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## API
+
+### Create a dhparam key
+
+Use `createDhparam` for creating dhparam keys
+
+    pem.<span class="apidocCodeKeywordSpan">createDhparam</span>(keyBitsize, callback)
+
+Where
+
+  * **keyBitsize** is an optional size of the key, defaults to 512 (bit)
+  * **callback** is a callback function with an error object and `{dhparam}`
+
+### Create a private key
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.createPkcs12" id="apidoc.element.pem.createPkcs12">
+        function <span class="apidocSignatureSpan">pem.</span>createPkcs12
+        <span class="apidocSignatureSpan">(key, certificate, password, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createPkcs12(key, certificate, password, options, callback) {
+    if (!callback &#x26;&#x26; typeof options === &#x27;function&#x27;) {
+        callback = options;
+        options = {};
+    }
+
+    var params = [&#x27;pkcs12&#x27;,&#x27;-export&#x27;];
+    var cipher = [&#x27;aes128&#x27;, &#x27;aes192&#x27;, &#x27;aes256&#x27;, &#x27;camellia128&#x27;, &#x27;camellia192&#x27;, &#x27;camellia256&#x27;, &#x27;des&#x27;, &#x27;des3&#x27;, &#x27;idea&#x27;];
+    if (options &#x26;&#x26; options.cipher &#x26;&#x26; ( -1 !== Number(cipher.indexOf(options.cipher)) )){
+        params.push( &#x27;-&#x27; + options.cipher );
+    }
+    if(options &#x26;&#x26; options.clientKeyPassword){
+        params.push(&#x27;-passin&#x27;);
+        params.push(&#x27;pass:&#x27; + options.clientKeyPassword);
+    }
+    params.push( &#x27;-password&#x27; );
+    params.push( &#x27;pass:&#x27; + password );
+
+    params.push( &#x27;-in&#x27; );
+    params.push(&#x27;--TMPFILE--&#x27;);
+    params.push( &#x27;-inkey&#x27; );
+    params.push(&#x27;--TMPFILE--&#x27;);
+
+    var tmpfiles = [certificate, key];
+
+    if (options &#x26;&#x26; options.certFiles) {
+      tmpfiles.push(options.certFiles.join(&#x27;&#x27;));
+
+      params.push( &#x27;-certfile&#x27; );
+      params.push(&#x27;--TMPFILE--&#x27;);
+    }
+
+    execBinaryOpenSSL(params, tmpfiles, function(error, pkcs12) {
+        if (error) {
+            return callback(error);
+        }
+        return callback(null, {
+            pkcs12: pkcs12
+        });
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * **callback** is a callback function with an error object and `{size, prime}`
+
+
+### Export to a PKCS12 keystore
+
+Use `createPkcs12` to export a certificate, the private key and optionally any signing or intermediate CA certificates to a PKCS12
+ keystore.
+
+	pem.<span class="apidocCodeKeywordSpan">createPkcs12</span>(clientKey, certificate, p12Password, [options], callback)
+
+Where
+
+* **clientKey** is a PEM encoded private key
+* **certificate** is a PEM encoded certificate
+* **p12Password** is the password of the exported keystore
+* **options** is an optional options object with `cipher`, (one of &#x22;aes128&#x22;, &#x22;aes192&#x22;, &#x22;aes256&#x22;, &#
+x22;camellia128&#x22;, &#x22;camellia192&#x22;, &#x22;camellia256&#x22;, &#x22;des&#x22;, &#x22;des3&#x22; or &#x22;idea&#x22;), `
+clientKeyPassword` and `certFiles` (an array of additional certificates to include - e.g. CA certificates)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.createPrivateKey" id="apidoc.element.pem.createPrivateKey">
+        function <span class="apidocSignatureSpan">pem.</span>createPrivateKey
+        <span class="apidocSignatureSpan">(keyBitsize, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createPrivateKey(keyBitsize, options, callback) {
+    var clientKeyPassword;
+    if (!callback &#x26;&#x26; !options &#x26;&#x26; typeof keyBitsize === &#x27;function&#x27;) {
+        callback = keyBitsize;
+        keyBitsize = undefined;
+        options = {};
+    }
+    else if (!callback &#x26;&#x26; keyBitsize &#x26;&#x26; typeof options === &#x27;function&#x27;) {
+        callback = options;
+        options = {};
+    }
+
+    keyBitsize = Number(keyBitsize) || 2048;
+
+    var params = [&#x27;genrsa&#x27;,
+        &#x27;-rand&#x27;,
+        &#x27;/var/log/mail:/var/log/messages&#x27;
+    ];
+    var cipher = [&#x22;aes128&#x22;, &#x22;aes192&#x22;, &#x22;aes256&#x22;, &#x22;camellia128&#x22;, &#x22;camellia192&#x22;, &#x22;camellia256&#x22;, &#x22;des&#x22;, &#x22;des3&#x22;, &#x22;idea&#x22;];
+
+    if (options &#x26;&#x26; options.cipher &#x26;&#x26; ( -1 !== Number(cipher.indexOf(options.cipher)) ) &#x26;&#x26; options.password){
+        clientKeyPassword = pathlib.join(tempDir, crypto.randomBytes(20).toString(&#x27;hex&#x27;));
+        fs.writeFileSync(clientKeyPassword, options.password);
+        params.push( &#x27;-&#x27; + options.cipher );
+        params.push( &#x27;-passout&#x27; );
+        params.push( &#x27;file:&#x27; + clientKeyPassword );
+    }
+
+    params.push(keyBitsize);
+
+    execOpenSSL(params, &#x27;RSA PRIVATE KEY&#x27;, function(sslErr, key) {
+        function done(err) {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, {
+                key: key
+            });
+        }
+
+        if (clientKeyPassword) {
+            fs.unlink(clientKeyPassword, function(fsErr) {
+                done(sslErr || fsErr);
+            });
+        }
+        else {
+            done(sslErr);
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* **keyBitsize** is an optional size of the key, defaults to 512 (bit)
+* **callback** is a callback function with an error object and `{dhparam}`
+
+### Create a private key
+
+Use `createPrivateKey` for creating private keys
+
+  pem.<span class="apidocCodeKeywordSpan">createPrivateKey</span>(keyBitsize, [options,] callback)
+
+Where
+
+* **keyBitsize** is an optional size of the key, defaults to 2048 (bit)
+* **options** is an optional object of the cipher and password (both required for encryption), defaults {cipher:&#x27;&#x27;,password
+:&#x27;&#x27;}
+(ciphers:[&#x22;aes128&#x22;, &#x22;aes192&#x22;, &#x22;aes256&#x22;, &#x22;camellia128&#x22;, &#x22;camellia192&#x22;, &#x22;camellia256
+&#x22;, &#x22;des&#x22;, &#x22;des3&#x22;, &#x22;idea&#x22;])
+* **callback** is a callback function with an error object and `{key}`
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.getDhparamInfo" id="apidoc.element.pem.getDhparamInfo">
+        function <span class="apidocSignatureSpan">pem.</span>getDhparamInfo
+        <span class="apidocSignatureSpan">(dh, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getDhparamInfo(dh, callback) {
+    dh = Buffer.isBuffer(dh) &#x26;&#x26; dh.toString() || dh;
+
+    var params = [
+        &#x27;dh&#x27;,
+        &#x27;-text&#x27;,
+        &#x27;-in&#x27;,
+        &#x27;--TMPFILE--&#x27;
+    ];
+
+    spawnWrapper(params, dh, function(err, code, stdout) {
+        if (err) {
+            return callback(err);
+        }
+
+        var result = {};
+        var match = stdout.match(/Parameters: \((\d+) bit\)/);
+
+        if (match) {
+            result.size = Number(match[1]);
+        }
+
+        var prime = &#x27;&#x27;;
+        stdout.split(&#x27;\n&#x27;).forEach(function (line) {
+            if (/\s+([0-9a-f][0-9a-f]:)+[0-9a-f]?[0-9a-f]?/g.test(line)) {
+                prime += line.trim();
+            }
+        });
+
+        if (prime) {
+            result.prime = prime;
+        }
+
+        if (!match &#x26;&#x26; !prime) {
+            return callback(new Error(&#x27;No DH info found&#x27;));
+        }
+
+        return callback(null, result);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* **certificate** is a PEM encoded certificate, CSR or private key
+* **callback** is a callback function with an error object and `{modulus}`
+
+### Get DH parameter information
+
+Use `getDhparamInfo` to get the size and prime of DH parameters.
+
+  pem.<span class="apidocCodeKeywordSpan">getDhparamInfo</span>(dhparam, callback)
+
+Where
+
+* **dhparam** is a PEM encoded DH parameters string
+* **callback** is a callback function with an error object and `{size, prime}`
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.getFingerprint" id="apidoc.element.pem.getFingerprint">
+        function <span class="apidocSignatureSpan">pem.</span>getFingerprint
+        <span class="apidocSignatureSpan">(certificate, hash, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getFingerprint(certificate, hash, callback) {
+
+    if (!callback &#x26;&#x26; typeof hash === &#x27;function&#x27;) {
+        callback = hash;
+        hash = undefined;
+    }
+
+    hash = hash || &#x27;sha1&#x27;;
+
+    var params = [&#x27;x509&#x27;,
+        &#x27;-in&#x27;,
+        &#x27;--TMPFILE--&#x27;,
+        &#x27;-fingerprint&#x27;,
+        &#x27;-noout&#x27;,
+        &#x27;-&#x27; + hash
+    ];
+
+    spawnWrapper(params, certificate, function(err, code, stdout) {
+        if (err) {
+            return callback(err);
+        }
+        var match = stdout.match(/Fingerprint=([0-9a-fA-F:]+)$/m);
+        if (match) {
+            return callback(null, {
+                fingerprint: match[1]
+            });
+        } else {
+            return callback(new Error(&#x27;No fingerprint&#x27;));
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+? *san* is only present if the CSR or certificate has SAN entries.
+
+### Get fingerprint
+
+Use `getFingerprint` to get the default SHA1 fingerprint for a certificate
+
+  pem.<span class="apidocCodeKeywordSpan">getFingerprint</span>(certificate, [hash,] callback)
+
+Where
+
+* **certificate** is a PEM encoded certificate
+* **hash** is a hash function to use (either `md5`, `sha1` or `sha256`, defaults to `sha1`)
+* **callback** is a callback function with an error object and `{fingerprint}`
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.getModulus" id="apidoc.element.pem.getModulus">
+        function <span class="apidocSignatureSpan">pem.</span>getModulus
+        <span class="apidocSignatureSpan">(certificate, password, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getModulus(certificate, password, callback) {
+    if (!callback &#x26;&#x26; typeof password === &#x27;function&#x27;) {
+        callback = password;
+        password = undefined;
+    }
+
+    certificate = Buffer.isBuffer(certificate) &#x26;&#x26; certificate.toString() || certificate;
+
+    var type = &#x27;&#x27;;
+    if (certificate.match(/BEGIN(\sNEW)? CERTIFICATE REQUEST/)) {
+        type = &#x27;req&#x27;;
+    } else if (certificate.match(/BEGIN RSA PRIVATE KEY/) || certificate.match(/BEGIN PRIVATE KEY/)) {
+        type = &#x27;rsa&#x27;;
+    } else {
+        type = &#x27;x509&#x27;;
+    }
+    var params = [type,
+        &#x27;-noout&#x27;,
+        &#x27;-modulus&#x27;,
+        &#x27;-in&#x27;,
+        &#x27;--TMPFILE--&#x27;
+    ];
+
+    if (password) {
+        params.push( &#x27;-passin&#x27;);
+        params.push( &#x27;pass:&#x27; + password);
+    }
+
+    spawnWrapper(params, certificate, function(err, code, stdout) {
+        if (err) {
+            return callback(err);
+        }
+        var match = stdout.match(/Modulus=([0-9a-fA-F]+)$/m);
+        if (match) {
+            return callback(null, {
+                modulus: match[1]
+            });
+        } else {
+            return callback(new Error(&#x27;No modulus&#x27;));
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * **hash** is a hash function to use (either `md5`, `sha1` or `sha256`, defaults to `sha1`)
+  * **callback** is a callback function with an error object and `{fingerprint}`
+
+### Get modulus
+
+Use `getModulus` to get the modulus for a certificate, a CSR or a private key. Modulus can be useful to check that a Private Key
+ Matches a Certificate
+
+    pem.<span class="apidocCodeKeywordSpan">getModulus</span>(certificate, [password,] callback)
+
+Where
+
+  * **certificate** is a PEM encoded certificate, CSR or private key
+  * **callback** is a callback function with an error object and `{modulus}`
+
+### Get DH parameter information
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.getPublicKey" id="apidoc.element.pem.getPublicKey">
+        function <span class="apidocSignatureSpan">pem.</span>getPublicKey
+        <span class="apidocSignatureSpan">(certificate, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getPublicKey(certificate, callback) {
+    if (!callback &#x26;&#x26; typeof certificate === &#x27;function&#x27;) {
+        callback = certificate;
+        certificate = undefined;
+    }
+
+    certificate = (certificate || &#x27;&#x27;).toString();
+
+    var params;
+
+    if (certificate.match(/BEGIN(\sNEW)? CERTIFICATE REQUEST/)) {
+        params = [&#x27;req&#x27;,
+            &#x27;-in&#x27;,
+            &#x27;--TMPFILE--&#x27;,
+            &#x27;-pubkey&#x27;,
+            &#x27;-noout&#x27;
+        ];
+    } else if (certificate.match(/BEGIN RSA PRIVATE KEY/)) {
+        params = [&#x27;rsa&#x27;,
+            &#x27;-in&#x27;,
+            &#x27;--TMPFILE--&#x27;,
+            &#x27;-pubout&#x27;
+        ];
+    } else {
+        params = [&#x27;x509&#x27;,
+            &#x27;-in&#x27;,
+            &#x27;--TMPFILE--&#x27;,
+            &#x27;-pubkey&#x27;,
+            &#x27;-noout&#x27;
+        ];
+    }
+
+    execOpenSSL(params, &#x27;PUBLIC KEY&#x27;, certificate, function(error, key) {
+        if (error) {
+            return callback(error);
+        }
+        return callback(null, {
+            publicKey: key
+        });
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * **extFile** extension config file - **without** `-extensions v3_req`
+  * **config** extension config file - **with** `-extensions v3_req`
+
+### Export a public key
+
+Use `getPublicKey` for exporting a public key from a private key, CSR or certificate
+
+    pem.<span class="apidocCodeKeywordSpan">getPublicKey</span>(certificate, callback)
+
+Where
+
+  * **certificate** is a PEM encoded private key, CSR or certificate
+  * **callback** is a callback function with an error object and `{publicKey}`
+
+### Read certificate info
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.readCertificateInfo" id="apidoc.element.pem.readCertificateInfo">
+        function <span class="apidocSignatureSpan">pem.</span>readCertificateInfo
+        <span class="apidocSignatureSpan">(certificate, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function readCertificateInfo(certificate, callback) {
+    if (!callback &#x26;&#x26; typeof certificate === &#x27;function&#x27;) {
+        callback = certificate;
+        certificate = undefined;
+    }
+
+    certificate = (certificate || &#x27;&#x27;).toString();
+
+    var type = certificate.match(/BEGIN(\sNEW)? CERTIFICATE REQUEST/) ? &#x27;req&#x27; : &#x27;x509&#x27;,
+        params = [type,
+            &#x27;-noout&#x27;,
+            &#x27;-text&#x27;,
+            &#x27;-in&#x27;,
+            &#x27;--TMPFILE--&#x27;
+        ];
+    spawnWrapper(params, certificate, function(err, code, stdout) {
+        if (err) {
+            return callback(err);
+        }
+        return fetchCertificateData(stdout, callback);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * **certificate** is a PEM encoded private key, CSR or certificate
+  * **callback** is a callback function with an error object and `{publicKey}`
+
+### Read certificate info
+
+Use `readCertificateInfo` for reading subject data from a certificate or a CSR
+
+    pem.<span class="apidocCodeKeywordSpan">readCertificateInfo</span>(certificate, callback)
+
+Where
+
+  * **certificate** is a PEM encoded CSR or a certificate
+  * **callback** is a callback function with an error object and `{serial, country, state, locality, organization, organizationUnit
+, commonName, emailAddress, validity{start, end}, san{dns, ip}?, issuer{country, state, locality, organization, organizationUnit
+} }`
+
+? *san* is only present if the CSR or certificate has SAN entries.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.readPkcs12" id="apidoc.element.pem.readPkcs12">
+        function <span class="apidocSignatureSpan">pem.</span>readPkcs12
+        <span class="apidocSignatureSpan">(bufferOrPath, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function readPkcs12(bufferOrPath, options, callback) {
+  if (!callback &#x26;&#x26; typeof options === &#x27;function&#x27;) {
+      callback = options;
+      options = {};
+  }
+
+  options.p12Password = options.p12Password || &#x27;&#x27;;
+
+  var tmpfiles = [];
+  var args = [&#x27;pkcs12&#x27;, &#x27;-in&#x27;, bufferOrPath, &#x27;-passin&#x27;, &#x27;pass:&#x27; + options.p12Password];
+
+  if (Buffer.isBuffer(bufferOrPath)) {
+    tmpfiles = [bufferOrPath];
+    args[2] = &#x27;--TMPFILE--&#x27;;
+  }
+
+  if (options.clientKeyPassword) {
+    args.push(&#x27;-passout&#x27;);
+    args.push(&#x27;pass:&#x27; + options.clientKeyPassword);
+  } else {
+    args.push(&#x27;-nodes&#x27;);
+  }
+
+  execBinaryOpenSSL(args, tmpfiles, function (error, stdout) {
+    var keybundle = {};
+
+    if (error &#x26;&#x26; error.message.indexOf(&#x27;No such file or directory&#x27;) !== -1) {
+      error.code = &#x27;ENOENT&#x27;;
+    }
+
+    if (!error) {
+      var certs = readFromString(stdout, CERT_START, CERT_END);
+      keybundle.cert = certs.shift();
+      keybundle.ca = certs;
+      keybundle.key = readFromString(stdout, KEY_START, KEY_END).pop();
+
+      if (keybundle.key) {
+        // convert to RSA key
+        return execOpenSSL([&#x27;rsa&#x27;, &#x27;-in&#x27;, &#x27;--TMPFILE--&#x27;], &#x27;RSA PRIVATE KEY&#x27;, [keybundle.key], function (error, key) {
+          keybundle.key = key;
+
+          return callback(error, keybundle);
+        });
+      }
+
+      if (options.clientKeyPassword) {
+        keybundle.key = readFromString(stdout, ENCRYPTED_KEY_START, ENCRYPTED_KEY_END).pop();
+      } else {
+        keybundle.key = readFromString(stdout, RSA_KEY_START, RSA_KEY_END).pop();
+      }
+    }
+
+    return callback(error, keybundle);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* **options** is an optional options object with `cipher`, (one of &#x22;aes128&#x22;, &#x22;aes192&#x22;, &#x22;aes256&#x22;, &#
+x22;camellia128&#x22;, &#x22;camellia192&#x22;, &#x22;camellia256&#x22;, &#x22;des&#x22;, &#x22;des3&#x22; or &#x22;idea&#x22;), `
+clientKeyPassword` and `certFiles` (an array of additional certificates to include - e.g. CA certificates)
+* **callback** is a callback function with an error object and `{pkcs12}` (binary)
+
+### Read a PKCS12 keystore
+
+Use `readPkcs12` to read a certificate, private key and CA certificates from a PKCS12 keystore.
+
+	pem.<span class="apidocCodeKeywordSpan">readPkcs12</span>(bufferOrPath, [options], callback)
+
+Where
+
+* **bufferOrPath** is a PKCS12 keystore as a [Buffer](https://nodejs.org/api/buffer.html) or the path to a file
+* **options** is an optional options object with `clientKeyPassword` which will be used to encrypt the stored key and `p12Password
+` which will be used to open the keystore
+* **callback** is a callback function with an error object and `{key: String, cert: String, ca: Array}`
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pem.verifySigningChain" id="apidoc.element.pem.verifySigningChain">
+        function <span class="apidocSignatureSpan">pem.</span>verifySigningChain
+        <span class="apidocSignatureSpan">(certificate, ca, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function verifySigningChain(certificate, ca, callback) {
+    if (!Array.isArray(ca)) {
+        ca = [ca];
+    }
+
+    var files = [
+      ca.join(&#x27;\n&#x27;),
+      certificate
+    ];
+
+    var params = [&#x27;verify&#x27;,
+        &#x27;-CAfile&#x27;,
+        &#x27;--TMPFILE--&#x27;,
+        &#x27;--TMPFILE--&#x27;
+    ];
+
+    spawnWrapper(params, files, function(err, code, stdout) {
+        if (err) {
+            return callback(err);
+        }
+
+        callback(null, stdout.trim().slice(-4) === &#x27;: OK&#x27;);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* **options** is an optional options object with `clientKeyPassword` which will be used to encrypt the stored key and `p12Password
+` which will be used to open the keystore
+* **callback** is a callback function with an error object and `{key: String, cert: String, ca: Array}`
+
+### Verify a certificate signing chain
+
+Use `verifySigningChain` to assert that a given certificate has a valid signing chain.
+
+    pem.<span class="apidocCodeKeywordSpan">verifySigningChain</span>(certificate, ca, callback)
+
+Where
+
+* **certificate** is a PEM encoded certificate string
+* **ca** is a PEM encoded CA certificate string or an array of certificate strings
+* **callback** is a callback function with an error object and a boolean as arguments
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
